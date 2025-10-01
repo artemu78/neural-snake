@@ -158,12 +158,16 @@ const SnakeGame = () => {
         {Array.from({ length: 100 }).map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+            className="absolute rounded-full animate-pulse"
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              background: `radial-gradient(circle, rgba(255,255,255,${Math.random() * 0.5 + 0.5}) 0%, transparent 70%)`,
+              boxShadow: `0 0 ${Math.random() * 10 + 5}px rgba(255,255,255,${Math.random() * 0.8 + 0.2})`,
               animationDelay: `${Math.random() * 3}s`,
-              opacity: Math.random() * 0.7 + 0.3,
+              animationDuration: `${Math.random() * 2 + 2}s`,
             }}
           />
         ))}
@@ -234,14 +238,28 @@ const SnakeGame = () => {
             <div className="relative">
               {/* Game Grid */}
               <div 
-                className="grid border border-neon-purple shadow-glow-purple mx-auto"
+                className="grid border border-neon-purple shadow-glow-purple mx-auto relative overflow-hidden"
                 style={{
                   gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
                   gridTemplateRows: `repeat(${GRID_SIZE}, 1fr)`,
                   width: '500px',
                   height: '500px',
+                  background: 'linear-gradient(to bottom, #1a1a2e 0%, #2d2d44 50%, #4a4a5e 100%)',
                 }}
               >
+                {/* Moon landscape crater effects */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-1/4 left-1/3 w-20 h-20 rounded-full bg-black/20 blur-sm" />
+                  <div className="absolute top-1/2 right-1/4 w-16 h-16 rounded-full bg-black/15 blur-sm" />
+                  <div className="absolute bottom-1/3 left-1/2 w-24 h-24 rounded-full bg-black/10 blur-md" />
+                  <div className="absolute top-3/4 left-1/4 w-12 h-12 rounded-full bg-black/20 blur-sm" />
+                  <div className="absolute top-1/3 right-1/3 w-14 h-14 rounded-full bg-black/15 blur-sm" />
+                  {/* Rocky texture overlay */}
+                  <div className="absolute inset-0 opacity-10" style={{
+                    backgroundImage: 'radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 1px, transparent 1px), radial-gradient(circle at 60% 70%, rgba(255,255,255,0.2) 1px, transparent 1px), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.25) 1px, transparent 1px)',
+                    backgroundSize: '50px 50px, 70px 70px, 60px 60px'
+                  }} />
+                </div>
                 {Array.from({ length: GRID_SIZE * GRID_SIZE }).map((_, index) => {
                   const x = index % GRID_SIZE;
                   const y = Math.floor(index / GRID_SIZE);
