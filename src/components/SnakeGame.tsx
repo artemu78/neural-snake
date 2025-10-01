@@ -211,9 +211,9 @@ const SnakeGame = () => {
                   let cellClass = "border-cyber-light/20 border-[0.5px] transition-all duration-150 ease-linear relative";
                   
                   if (isSnakeHead) {
-                    cellClass += " bg-neon-pink/20";
+                    cellClass += " bg-green-500/20";
                   } else if (isSnakeBody) {
-                    cellClass += " bg-neon-purple/20";
+                    cellClass += " bg-green-600/20";
                   } else if (isFood) {
                     cellClass += " bg-neon-blue/20";
                   } else {
@@ -227,13 +227,19 @@ const SnakeGame = () => {
                     >
                       {isSnakeHead && (
                         <>
-                          <div className="absolute inset-0 rounded-full bg-neon-pink shadow-glow-pink transition-all duration-150 ease-linear" />
-                          <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 bg-cyber-dark rounded-full transition-all duration-150 ease-linear" />
-                          <div className="absolute top-1/4 right-1/4 w-1.5 h-1.5 bg-cyber-dark rounded-full transition-all duration-150 ease-linear" />
+                          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-green-400 via-green-500 to-green-600 shadow-lg shadow-green-500/50 transition-all duration-150 ease-linear" />
+                          <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 bg-yellow-400 rounded-full border border-black/30 transition-all duration-150 ease-linear" />
+                          <div className="absolute top-1/4 right-1/4 w-1.5 h-1.5 bg-yellow-400 rounded-full border border-black/30 transition-all duration-150 ease-linear" />
+                          <div className="absolute bottom-1/3 left-1/2 -translate-x-1/2 w-2 h-1 bg-red-500/80 rounded-full" />
                         </>
                       )}
                       {isSnakeBody && (
-                        <div className="absolute inset-1 rounded-full bg-gradient-to-br from-neon-purple to-neon-purple/70 shadow-glow-purple transition-all duration-150 ease-linear" />
+                        <>
+                          <div className="absolute inset-1 rounded-full bg-gradient-to-br from-green-500 via-green-600 to-green-700 shadow-lg shadow-green-600/30 transition-all duration-150 ease-linear" />
+                          <div className="absolute top-1/4 left-1/3 w-1 h-1 bg-green-800/60 rounded-full" />
+                          <div className="absolute top-1/2 right-1/3 w-0.5 h-0.5 bg-green-800/50 rounded-full" />
+                          <div className="absolute bottom-1/3 left-1/4 w-0.5 h-0.5 bg-green-800/50 rounded-full" />
+                        </>
                       )}
                       {isFood && (
                         <div className="absolute inset-0 flex items-center justify-center animate-glow-pulse transition-all duration-150 ease-linear">
