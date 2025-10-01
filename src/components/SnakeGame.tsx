@@ -208,14 +208,14 @@ const SnakeGame = () => {
                   const isSnakeBody = snake.slice(1).some(segment => segment.x === x && segment.y === y);
                   const isFood = food.x === x && food.y === y;
 
-                  let cellClass = "border-cyber-light/20 border-[0.5px] transition-all duration-150 relative";
+                  let cellClass = "border-cyber-light/20 border-[0.5px] transition-all duration-150 ease-linear relative";
                   
                   if (isSnakeHead) {
-                    cellClass += " bg-neon-pink shadow-glow-pink animate-glow-pulse";
+                    cellClass += " bg-neon-pink/20";
                   } else if (isSnakeBody) {
-                    cellClass += " bg-neon-purple shadow-glow-purple";
+                    cellClass += " bg-neon-purple/20";
                   } else if (isFood) {
-                    cellClass += " bg-neon-blue shadow-glow-blue animate-glow-pulse";
+                    cellClass += " bg-neon-blue/20";
                   } else {
                     cellClass += " bg-cyber-dark/50";
                   }
@@ -227,16 +227,16 @@ const SnakeGame = () => {
                     >
                       {isSnakeHead && (
                         <>
-                          <div className="absolute inset-0 rounded-full bg-neon-pink shadow-glow-pink" />
-                          <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 bg-cyber-dark rounded-full" />
-                          <div className="absolute top-1/4 right-1/4 w-1.5 h-1.5 bg-cyber-dark rounded-full" />
+                          <div className="absolute inset-0 rounded-full bg-neon-pink shadow-glow-pink transition-all duration-150 ease-linear" />
+                          <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 bg-cyber-dark rounded-full transition-all duration-150 ease-linear" />
+                          <div className="absolute top-1/4 right-1/4 w-1.5 h-1.5 bg-cyber-dark rounded-full transition-all duration-150 ease-linear" />
                         </>
                       )}
                       {isSnakeBody && (
-                        <div className="absolute inset-1 rounded-full bg-gradient-to-br from-neon-purple to-neon-purple/70 shadow-glow-purple" />
+                        <div className="absolute inset-1 rounded-full bg-gradient-to-br from-neon-purple to-neon-purple/70 shadow-glow-purple transition-all duration-150 ease-linear" />
                       )}
                       {isFood && (
-                        <div className="absolute inset-1 rounded-full bg-neon-blue shadow-glow-blue animate-glow-pulse" />
+                        <div className="absolute inset-1 rounded-full bg-neon-blue shadow-glow-blue animate-glow-pulse transition-all duration-150 ease-linear" />
                       )}
                     </div>
                   );
