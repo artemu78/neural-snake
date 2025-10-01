@@ -208,7 +208,7 @@ const SnakeGame = () => {
                   const isSnakeBody = snake.slice(1).some(segment => segment.x === x && segment.y === y);
                   const isFood = food.x === x && food.y === y;
 
-                  let cellClass = "border-cyber-light/20 border-[0.5px] transition-all duration-150";
+                  let cellClass = "border-cyber-light/20 border-[0.5px] transition-all duration-150 relative";
                   
                   if (isSnakeHead) {
                     cellClass += " bg-neon-pink shadow-glow-pink animate-glow-pulse";
@@ -224,7 +224,21 @@ const SnakeGame = () => {
                     <div
                       key={index}
                       className={cellClass}
-                    />
+                    >
+                      {isSnakeHead && (
+                        <>
+                          <div className="absolute inset-0 rounded-full bg-neon-pink shadow-glow-pink" />
+                          <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 bg-cyber-dark rounded-full" />
+                          <div className="absolute top-1/4 right-1/4 w-1.5 h-1.5 bg-cyber-dark rounded-full" />
+                        </>
+                      )}
+                      {isSnakeBody && (
+                        <div className="absolute inset-1 rounded-full bg-gradient-to-br from-neon-purple to-neon-purple/70 shadow-glow-purple" />
+                      )}
+                      {isFood && (
+                        <div className="absolute inset-1 rounded-full bg-neon-blue shadow-glow-blue animate-glow-pulse" />
+                      )}
+                    </div>
                   );
                 })}
               </div>
