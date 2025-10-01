@@ -17,6 +17,25 @@ const SnakeGame = () => {
   const [direction, setDirection] = useState<Position>(INITIAL_DIRECTION);
   const [score, setScore] = useState(0);
 
+  // Create audio context for bite sound
+  const playBiteSound = useCallback(() => {
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.value = 400;
+    oscillator.type = 'square';
+    
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.1);
+  }, []);
+
   const generateFood = useCallback((snakeBody: Position[]) => {
     let newFood: Position;
     do {
@@ -66,6 +85,7 @@ const SnakeGame = () => {
 
       // Check food collision
       if (head.x === food.x && head.y === food.y) {
+        playBiteSound();
         setScore(prev => prev + 10);
         setFood(generateFood(newSnake));
       } else {
@@ -74,7 +94,7 @@ const SnakeGame = () => {
 
       return newSnake;
     });
-  }, [gameState, direction, food, generateFood]);
+  }, [gameState, direction, food, generateFood, playBiteSound]);
 
   // Game loop effect
   useEffect(() => {
