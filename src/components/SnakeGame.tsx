@@ -236,7 +236,9 @@ const SnakeGame = () => {
                         <div className="absolute inset-1 rounded-full bg-gradient-to-br from-neon-purple to-neon-purple/70 shadow-glow-purple transition-all duration-150 ease-linear" />
                       )}
                       {isFood && (
-                        <div className="absolute inset-1 rounded-full bg-neon-blue shadow-glow-blue animate-glow-pulse transition-all duration-150 ease-linear" />
+                        <div className="absolute inset-0 flex items-center justify-center animate-glow-pulse transition-all duration-150 ease-linear">
+                          <span className="text-3xl">🍌</span>
+                        </div>
                       )}
                     </div>
                   );
